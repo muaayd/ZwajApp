@@ -47,6 +47,7 @@ namespace ZwajApp.API
             }
 
             // app.UseHttpsRedirection();
+            //https://github.com/muaayd/ZwajApp mm0ftah1981
             app.UseCors(x=> x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseMvc();
         }
