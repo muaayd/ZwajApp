@@ -1,0 +1,63 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <img
+          src="{{ user.photoURL }}"
+          alt="{{  user.knownAs }}"
+          class="card-img-top img-thumbnail"
+        />
+        <div class="card-body">
+          <div>
+            <strong>يقيم في :</strong>
+            <p>{{  user.country }},{{  user.city }}</p>
+          </div>
+          <div>
+            <strong>العمر :</strong>
+            <p>{{  user.age }}</p>
+          </div>
+          <div>
+            <strong>آخر ظهور :</strong>
+            <p>{{  user.lastActive }}</p>
+          </div>
+          <div>
+            <strong>مشترك منذ :</strong>
+            <p>{{  user.created }}</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="btn-group d-flex">
+            <button class="btn btn-primary w-100">اعجاب</button>
+            <button class="btn btn-success w-100">مراسله</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-8">
+      <div class="tab-panel">
+        <tabset class="member-tabset">
+          <tab heading="أنا {{  user.knownAs }}">
+            <h4>اعرفك بنفسي</h4>
+            <P>{{  user.introduction }}</P>
+            <h4>ابحث عن</h4>
+            <P>{{  user.lookingFor }}</P>
+          </tab>
+          <tab heading="هواياتي">
+            <h4>هواياتي</h4>
+            <P>{{  user.interests }}</P>
+          </tab>
+          <tab heading="ألبوم الصور">
+            <h4>ألبوم الصور</h4>
+            <!-- <P>الصور قادمة</P> -->
+             <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery> 
+          </tab>
+          <tab heading="الرسائل">
+            <h4>الرسائل</h4>
+            <P>الرسائل قادمة</P>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,7 @@ using ZwajApp.API.Dtos;
 
 namespace ZwajApp.API.Controllers
 {
-    // [Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
