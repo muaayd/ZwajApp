@@ -28,8 +28,10 @@ namespace ZwajApp.API.Helpers
             .ForMember(dest => dest.Age, opt =>{
                 opt.ResolveUsing (src => src.DateOfBirth.CalculatAge());
             });
-            
+         
             CreateMap<Photo, PhotoForDetailsDto>();
+               
+            CreateMap<UserForUpdateDto,User>();
         }
 
     }
