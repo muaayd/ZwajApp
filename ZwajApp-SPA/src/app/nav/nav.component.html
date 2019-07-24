@@ -18,7 +18,8 @@
     
   </ul>
   <div *ngIf="loggedIn()" dropdown  class="dropdown" >
-  <a dropdownToggle    class="dropdown-toggle text-light nav-link" style="letter-spacing:1px;font-weight:bold;font-family:'JF Flat';font-size:1.2rem" >
+ 
+    <a dropdownToggle    class="dropdown-toggle text-light nav-link" style="letter-spacing:1px;font-weight:bold;font-family:'JF Flat';font-size:1.2rem" >
     مرحبا بك
     {{AuthService.decodedToken?.unique_name| titlecase}}
   </a>
@@ -30,7 +31,11 @@
     <a (click)="loggedOut()"  class="dropdown-item mnav-link" ><i class="fa fa-sign-out"></i>
       تسجيل الخروج</a>
   </div>
+  
 </div>
+<span  *ngIf="loggedIn()">
+    <img src="{{PhotoUrl}}" alt="">
+    </span> 
   <form *ngIf="!loggedIn()" (ngSubmit)="login()" #loginForm="ngForm" class="ml-5 form-inline my-2 my-lg-0">
     <input name="username" required class="form-control mr-sm-2" type="text" placeholder="إسم المشترك" [(ngModel)]="model.username">
     <input  name="password" required class="form-control mr-sm-2" type="password" placeholder="كلمة السر" [(ngModel)]="model.password">

@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -18,10 +19,12 @@ namespace ZwajApp.API.Controllers
     {
         private readonly IAtuthRepository _repo;
         private readonly IConfiguration _config;
-        public AuthController(IAtuthRepository repo, IConfiguration config)
+        private readonly IMapper _mapper;
+        public AuthController(IAtuthRepository repo, IConfiguration config,IMapper mapper)
         {
             _config = config;
             _repo = repo;
+            _mapper=mapper;
         }
         [HttpPost("register")]
         public async Task<IActionResult> register(UserForRegisterDto userForRegisterDto)
@@ -60,9 +63,11 @@ namespace ZwajApp.API.Controllers
                 };
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var token = tokenHandler.CreateToken(tokenDescriptor);
+                var user=_mapper.Map<UserForListDto>(userFromRepo);
                 return Ok(new
                 {
-                    token = tokenHandler.WriteToken(token)
+                    token = tokenHandler.WriteToken(token),
+                    user
                 });
           /*  }
             catch 

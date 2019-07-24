@@ -44,6 +44,7 @@ namespace ZwajApp.API
 
             });
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper();
             services.AddTransient<TrialData>();
             services.AddScoped<IAtuthRepository, AtuthRepository>();
@@ -88,8 +89,9 @@ namespace ZwajApp.API
             }
 
             // app.UseHttpsRedirection();
-            //https://github.com/muaayd/ZwajApp mm0ftah1981
+          
             // trialData.Trialuser();
+
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
 
@@ -97,3 +99,15 @@ namespace ZwajApp.API
         }
     }
 }
+
+
+ 
+
+            //https://github.com/
+            //https://github.com/muaayd/ZwajApp
+            //user name :muaaydmoftah@gmail.com
+            //Password: mm0ftah1981
+            
+            //https://cloudinary.com/
+            //user name :muaaydmoftah@gmail.com
+            //Password: Mm@ftah1981

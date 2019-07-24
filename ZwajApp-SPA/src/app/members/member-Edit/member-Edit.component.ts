@@ -14,6 +14,7 @@ import { AuthService } from "src/app/_services/auth.service";
 export class MemberEditComponent implements OnInit {
   @ViewChild("editForm") editForm: NgForm;
   user: User;
+  PhotoUrl: string;
   @HostListener("window:beforeunload", ["$event"])
   unLoadNotification($event: any) {
     if (this.editForm.dirty) {
@@ -25,10 +26,12 @@ export class MemberEditComponent implements OnInit {
     private route: ActivatedRoute,
     private alertify: AlertifyService,
     private userService: UserService,
-    private authService: AuthService,
+    private AuthService: AuthService,
   ) {}
 
   ngOnInit() {
+    this.AuthService.currentPhotoUrl.subscribe(PhotoUrl => this.PhotoUrl=PhotoUrl);
+ 
     this.route.data.subscribe(data => {
       this.user = data["user"];
     });
@@ -38,7 +41,7 @@ export class MemberEditComponent implements OnInit {
     console.log(this.user);
    
     
-    this.userService.UpdateUser(this.authService.decodedToken.nameid,this.user).
+    this.userService.UpdateUser(this.AuthService.decodedToken.nameid,this.user).
     subscribe(
       ()=>{
         this.alertify.success("تم تعديل الملف الشخصي");
@@ -47,5 +50,9 @@ export class MemberEditComponent implements OnInit {
       error=>this.alertify.error(error))
  
  
+  }
+  updateMainPhoto(photoUrl){
+    this.user.photoURL=photoUrl
+    //this.AuthService.changeMemberPhoto(this.AuthService.currentUser.photoURL);
   }
 }
